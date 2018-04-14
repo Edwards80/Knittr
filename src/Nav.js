@@ -9,6 +9,13 @@ class Nav extends Component {
             <p className='App-title'>Knittr</p>
           </a>
         </div>
+        <div className='navbar-menu'>
+          <div className='navbar-start'>
+            <a className='navbar-item' href='/' >Home</a>
+            <a className='navbar-item' href="/patterns">Patterns</a>
+            <a className='navbar-item' href="/editor">Editor</a>
+          </div>
+        </div>
       </nav>
     );
   }
