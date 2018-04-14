@@ -15,18 +15,10 @@ class Home extends Component {
           </div>
         </section>
         <div className='columns'>
-          <div className='column'>
-            <PatternCard />
-          </div>
-          <div className='column'>
-            <PatternCard />
-          </div>
-          <div className='column'>
-            <PatternCard />
-          </div>
-          <div className='column'>
-            <PatternCard />
-          </div>
+          <PatternCard />
+          <PatternCard />
+          <PatternCard />
+          <PatternCard />
         </div>
       </div>
     );
