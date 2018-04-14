@@ -6,7 +6,7 @@ class Nav extends Component {
       <nav className='navbar is-warning' aria-label='main navigation'>
         <div className='navbar-brand'>
           <a className='navbar-item' href='/'>
-            <img className='App-logo' src='../woolball.png' alt='Knittr logo'/>
+            <img className='App-logo' src='./woolball.png' alt='Knittr logo'/>
             <p className='App-title'>Knittr</p>
           </a>
         </div>
