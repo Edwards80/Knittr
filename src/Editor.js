@@ -3,7 +3,6 @@ import Row from './Row';
 
 class Editor extends Component {
   state = {
-    BasePatternWidth: 15,
     dummyPattern: [
       ['p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'k'],
       ['p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'k', 'p'],

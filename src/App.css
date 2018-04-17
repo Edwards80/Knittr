@@ -20,14 +20,14 @@
 .wrapper {
   display: grid; 
   grid-gap: 1px;
-  background-color: #fff;
+  background-color:#fff;  
   color: #444;
   margin-bottom: 1px;
 }
 
 
 .stitch {
-  background-color: #444;
+  background-color: red;
   color: #fff;
   padding: 1px;
   font-size: 100%;
