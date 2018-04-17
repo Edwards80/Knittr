@@ -31,4 +31,7 @@
   color: #fff;
   padding: 1px;
   font-size: 100%;
+  cursor: crosshair;
+  height: 30px;
+  width: 30px;
 }
