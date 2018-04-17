@@ -22,7 +22,7 @@ class Editor extends Component {
     return (
       <div>
         {this.state.dummyPattern.map((row, i) => {
-          return <Row row={row} index={i} key={i}/>;
+          return <Row row={row} index={i} key={i} />;
         })}
       </div>
     );
