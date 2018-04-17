@@ -6,15 +6,14 @@ class Nav extends Component {
       <nav className='navbar is-warning' aria-label='main navigation'>
         <div className='navbar-brand'>
           <a className='navbar-item' href='/'>
-            <img className='App-logo' src='./woolball.png' alt='Knittr logo'/>
+            <img className='App-logo' src='./woolball.png' alt='Knittr logo' />
             <p className='App-title'>Knittr</p>
           </a>
-        </div>
-        <div className='navbar-menu'>
-          <div className='navbar-start'>
-            <a className='navbar-item' href='/' >Home</a>
-            <a className='navbar-item' href="/patterns">Patterns</a>
-            <a className='navbar-item' href="/editor">Editor</a>
+          <div className='navbar-menu is-active'>
+            <div className='navbar-start'>
+              <a className='navbar-item' href="/patterns">Patterns</a>
+              <a className='navbar-item' href="/editor">Editor</a>
+            </div>
           </div>
         </div>
       </nav>
