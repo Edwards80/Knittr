@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import logo from '../assets/woolball.png';
 
 class Nav extends Component {
   render() {
@@ -6,7 +7,7 @@ class Nav extends Component {
       <nav className='navbar is-warning' aria-label='main navigation'>
         <div className='navbar-brand'>
           <a className='navbar-item' href='/'>
-            <img className='App-logo' src='./woolball.png' alt='Knittr logo' />
+            <img className='App-logo' src={logo} alt='Knittr logo' />
             <p className='App-title'>Knittr</p>
           </a>
           <div className='navbar-menu is-active'>
