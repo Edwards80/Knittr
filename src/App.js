@@ -14,7 +14,7 @@ class App extends Component {
           <Nav />
           <Switch>
             <Route exact path='/' component={Home} />
-            <Route path='/patterns' component={Patterns} />
+            <Route path='/patterns/:pattern_id' component={Patterns} />
             <Route path='/editor' component={Editor} />
           </Switch>
         </div>
