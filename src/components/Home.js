@@ -8,7 +8,7 @@ class Home extends Component {
 
   componentDidMount() {
     fetch('http://localhost:5000/api/patterns').then(res => {
-      if (res.status === 404) return Promise.reject(new Error('Patterns not found'))
+      if (res.status === 404) return Promise.reject(new Error('Patterns not found'));
       return res.json();
     }).then(body => {
       this.setState({ patternsLoading: false, patterns: body });

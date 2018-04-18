@@ -10,7 +10,7 @@ class Patterns extends Component {
     const patternId = this.props.match.params.pattern_id;
     
     fetch(`http://localhost:5000/api/patterns/${patternId}`).then(res => {
-      if (res.status === 404) return Promise.reject(new Error('Pattern not found'))
+      if (res.status === 404) return Promise.reject(new Error('Pattern not found'));
       return res.json();
     }).then(body => {
       this.setState({ patternLoading: false, pattern: body.pattern });
@@ -27,6 +27,5 @@ class Patterns extends Component {
     );
   }
 }
-
 
 export default Patterns;
