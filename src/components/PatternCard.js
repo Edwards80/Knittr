@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 class PatternCard extends Component {
   render() {
+    let { title, style, author, description} = this.props.pattern;
     return (
       <div className='column'>
         <div className="card">
@@ -14,13 +15,13 @@ class PatternCard extends Component {
           </div>
           <div className="card-content">
             <div className="media-content">
-              <a href="Link to pattern"><p className="title is-4">Pattern Title</p></a>
-              <a href="Link to styles"><div className="tag is-primary is-rounded">Style Tag</div></a>
+              <a href="Link to pattern"><p className="title is-4">{title}</p></a>
+              <a href="Link to styles"><div className="tag is-primary is-rounded">{style}</div></a>
             </div>
           </div>
           <div className="content">
-            <p>Here is a brief description of the knitting pattern</p>
-            <p>Pattern by: <a href="Link to designer">Someone</a></p>            
+            <p>{description}</p>
+            <p>Pattern by: <a href={`designer/${author}`}>{author}</a></p>            
           </div>
         </div>
       </div>

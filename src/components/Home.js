@@ -2,6 +2,19 @@ import React, { Component } from 'react';
 import PatternCard from './PatternCard';
 
 class Home extends Component {
+  state = {
+    patternsLoading: true
+  }
+
+  componentDidMount() {
+    fetch('http://localhost:5000/api/patterns').then(res => {
+      if (res.status === 404) return Promise.reject(new Error('Patterns not found'))
+      return res.json();
+    }).then(body => {
+      this.setState({ patternsLoading: false, patterns: body });
+    });
+  }
+  
   render() {
     return (
       <div>
@@ -16,8 +29,8 @@ class Home extends Component {
           </div>
         </section>
         <div className='columns' >
-          {[1, 2, 3, 4].map((i) => {
-            return <PatternCard key={i} />;
+          {this.state.patternsLoading ? <p>Loading</p>  : this.state.patterns.map((pattern, i) => {
+            return <PatternCard key={i} pattern={pattern} />;
           })}
         </div>
         {/* Beginner patterns section */}
@@ -28,11 +41,11 @@ class Home extends Component {
             </div>
           </div>
         </section>
-        <div className='columns' >
+        {/* <div className='columns' >
           {[1, 2, 3, 4].map((i) => {
             return <PatternCard key={i} />;
           })}
-        </div>
+        </div> */}
         <button className='button'>More</button>
         {/* Beginner patterns section */}
         <section className='hero is-primary'>
@@ -42,11 +55,11 @@ class Home extends Component {
             </div>
           </div>
         </section>
-        <div className='columns' >
+        {/* <div className='columns' >
           {[1, 2, 3, 4].map((i) => {
             return <PatternCard key={i} />;
           })}
-        </div>
+        </div> */}
         <button className='button'>More</button>        
       </div>
     );
