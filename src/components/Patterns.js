@@ -31,6 +31,7 @@ class Patterns extends Component {
     const newPattern = Object.assign([], this.state.pattern);
     newPattern[row][col] = { stitchType: 'k', colour: '#ffff00' };
     this.setState({pattern: newPattern});
+    fetch(`http://localhost:5000/api/patterns/${this.props.match.params.pattern_id}/stitchHere/`, { method: 'PUT', mode: 'cors' });
   }
 }
 
