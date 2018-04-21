@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Row from './Row';
 import ToolBar from './ToolBar';
+import Instructions from './Instructions'
 
 const stitchTypes = {
   'knit': 'k',
@@ -32,6 +33,9 @@ class Patterns extends Component {
           return <Row row={row} index={i} key={i} updateStitch={this.updateStitch} stitchType={this.state.stitchType} />;
         })}
         <ToolBar handleStitchSelect={this.handleStitchSelect} handleColorSelect={this.handleColorSelect} stitchColor={this.state.stitchColor} />
+        {this.state.patternLoading ? <p>Loading</p>: this.state.pattern.map((row, i) => {
+          return <Instructions row={row} key={i} />
+        })}
       </div>
     );
   }
