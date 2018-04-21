@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import Row from './Row';
+import ToolBar from './ToolBar';
 
 class Patterns extends Component {
   state = {
-    patternLoading: true
+    patternLoading: true,
+    stitchType: 'knit'
   }
 
   componentDidMount() {
@@ -23,6 +25,7 @@ class Patterns extends Component {
         {this.state.patternLoading ? <p>Loading</p> : this.state.pattern.map((row, i) => {
           return <Row row={row} index={i} key={i} updateStitch={this.updateStitch} />;
         })}
+        <ToolBar handleStitchSelect={this.handleStitchSelect}/>
       </div>
     );
   }
@@ -31,7 +34,11 @@ class Patterns extends Component {
     const newPattern = Object.assign([], this.state.pattern);
     newPattern[row][col] = { stitchType: 'k', colour: '#ffff00' };
     this.setState({pattern: newPattern});
-    fetch(`http://localhost:5000/api/patterns/${this.props.match.params.pattern_id}/stitchHere/`, { method: 'PUT', mode: 'cors' });
+    fetch(`http://localhost:5000/api/patterns/${this.props.match.params.pattern_id}/stitchHere`, { method: 'PUT', mode: 'cors' });
+  }
+
+  handleStitchSelect = (event) => {
+    this.setState({stitchType: event.target.value})
   }
 }
 
