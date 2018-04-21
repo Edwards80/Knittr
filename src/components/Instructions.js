@@ -12,26 +12,33 @@ class Instructions extends Component {
 }
 
 const parseRow = (row, rowNum) => {
-  let rowInstruction = '';
-  let previousInst = [];
-  row.forEach((stitch, i) => {
-    if (i === 0) previousInst = [stitch.stitchType, 1];
-    else if (stitch.stitchType === previousInst[0]) previousInst[1]++;
-    else if (i === row.length - 1) {
-      if (stitch.stitchType === previousInst[0]) {
-        previousInst[1]++;
-        rowInstruction += previousInst.join('') + ' ';
-      } else {
-        rowInstruction += previousInst.join('') + ' ' + [stitch.stitchType, 1].join('');
-      }
-    }
-    else {
-      rowInstruction += previousInst.join('') + ' ';
-      previousInst = [stitch.stitchType, 1];
-    }
-  });
 
-  return <p>{`Row ${rowNum}: `}{rowInstruction}</p>
+  const parseRow = (row, rowNum) => {
+    let prevStitch = '';
+    let count = 1;
+
+    return row.reduce((inst, stitch, i) => {
+      if (i === 0) {
+        prevStitch = stitch.stitchType;
+      } else if (i === row.length - 1) {
+        if (stitch.stitchType === prevStitch) {
+          inst += `${stitch.stitchType}${count + 1}`;
+        } else {
+          inst += `${prevStitch}${count}, ${stitch.stitchType}${1}`;
+        }
+      } else if (stitch.stitchType === prevStitch) {
+        count++;
+      } else {
+        inst += `${prevStitch}${count}, `;
+        prevStitch = stitch.stitchType;
+        count = 1;
+      }
+
+      return inst;
+    }, '');
+  };
+
+  return <p>{`Row ${rowNum}: `}{parseRow(row)}</p>;
 };
 
 export default Instructions;

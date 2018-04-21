@@ -6,7 +6,7 @@ class ToolBar extends Component {
     return (
       <div>
         <div className='box'>
-          ToolBar
+          <div className="subtitle">ToolBar</div>
           <div className="field">
             <p className="control">
               <span className="select" name="stitchType" onChange={this.props.handleStitchSelect}>
