@@ -4,14 +4,14 @@ import ToolBar from './ToolBar';
 
 const stitchTypes = {
   'knit': 'k',
-  'perl': 'p'
+  'purl': 'p'
 }
 
 class Patterns extends Component {
   state = {
     patternLoading: true,
     stitchType: 'knit',
-    stitchColor: '#ff0000'
+    stitchColor: '#ff44336'
   }
 
   componentDidMount() {
@@ -31,7 +31,7 @@ class Patterns extends Component {
         {this.state.patternLoading ? <p>Loading</p> : this.state.pattern.map((row, i) => {
           return <Row row={row} index={i} key={i} updateStitch={this.updateStitch} stitchType={this.state.stitchType} />;
         })}
-        <ToolBar handleStitchSelect={this.handleStitchSelect} handleColorSelect={this.handleColorSelect} currentColor={this.state.stitchColor} />
+        <ToolBar handleStitchSelect={this.handleStitchSelect} handleColorSelect={this.handleColorSelect} stitchColor={this.state.stitchColor} />
       </div>
     );
   }

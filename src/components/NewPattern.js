@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 
-class Editor extends Component {
+class NewPattern extends Component {
 
   render() {
     return (
       <div>
-        Hello
+        New Pattern
       </div>
     );
   }
 }
 
-export default Editor;
+export default NewPattern;

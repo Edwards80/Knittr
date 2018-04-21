@@ -13,7 +13,7 @@ class Nav extends Component {
           <div className='navbar-menu is-active'>
             <div className='navbar-start'>
               <a className='navbar-item' href="/patterns">Patterns</a>
-              <a className='navbar-item' href="/editor">Editor</a>
+              <a className='navbar-item' href="/NewPattern">New Pattern</a>
             </div>
           </div>
         </div>

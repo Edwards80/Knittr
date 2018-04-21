@@ -4,7 +4,7 @@ import './App.css';
 import Nav from './components/Nav';
 import Home from './components/Home';
 import Patterns from './components/Patterns';
-import Editor from './components/Editor';
+import NewPattern from './components/NewPattern';
 
 class App extends Component {
   render() {
@@ -15,7 +15,7 @@ class App extends Component {
           <Switch>
             <Route exact path='/' component={Home} />
             <Route path='/patterns/:pattern_id' component={Patterns} />
-            <Route path='/editor' component={Editor} />
+            <Route path='/NewPattern' component={NewPattern} />
           </Switch>
         </div>
       </Router>      
