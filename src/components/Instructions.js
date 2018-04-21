@@ -4,14 +4,14 @@ class Instructions extends Component {
   render() {
     return (
       <div className="instructions">
-        {parseRow(this.props.row, this.props.rowNum)}
+       {`Row ${this.props.rowNum}: ${parseRow(this.props.row)}`}
       </div>
     );
   }
 
 }
 
-const parseRow = (row, rowNum) => {
+const parseRow = (row) => {
   let prevStitch = '';
   let count = 1;
 
