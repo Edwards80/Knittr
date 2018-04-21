@@ -11,7 +11,7 @@ class Patterns extends Component {
   state = {
     patternLoading: true,
     stitchType: 'knit',
-    stitchColor: '#f44336'
+    stitchColor: '#ff0000'
   }
 
   componentDidMount() {
@@ -31,7 +31,7 @@ class Patterns extends Component {
         {this.state.patternLoading ? <p>Loading</p> : this.state.pattern.map((row, i) => {
           return <Row row={row} index={i} key={i} updateStitch={this.updateStitch} stitchType={this.state.stitchType} />;
         })}
-        <ToolBar handleStitchSelect={this.handleStitchSelect} handleColorSelect={this.handleColorSelect} />
+        <ToolBar handleStitchSelect={this.handleStitchSelect} handleColorSelect={this.handleColorSelect} currentColor={this.state.stitchColor} />
       </div>
     );
   }
