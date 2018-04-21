@@ -3,14 +3,15 @@ import Row from './Row';
 import ToolBar from './ToolBar';
 
 const stitchTypes = {
-  'knit' : 'k',
-  'perl' : 'p'
+  'knit': 'k',
+  'perl': 'p'
 }
 
 class Patterns extends Component {
   state = {
     patternLoading: true,
-    stitchType: 'knit'
+    stitchType: 'knit',
+    stitchColor: '#f44336'
   }
 
   componentDidMount() {
@@ -30,20 +31,24 @@ class Patterns extends Component {
         {this.state.patternLoading ? <p>Loading</p> : this.state.pattern.map((row, i) => {
           return <Row row={row} index={i} key={i} updateStitch={this.updateStitch} stitchType={this.state.stitchType} />;
         })}
-        <ToolBar handleStitchSelect={this.handleStitchSelect}/>
+        <ToolBar handleStitchSelect={this.handleStitchSelect} handleColorSelect={this.handleColorSelect} />
       </div>
     );
   }
 
   updateStitch = (row, col) => {
     const newPattern = Object.assign([], this.state.pattern);
-    newPattern[row][col] = { stitchType: stitchTypes[this.state.stitchType], colour: '#ffff00' };
-    this.setState({pattern: newPattern});
+    newPattern[row][col] = { stitchType: stitchTypes[this.state.stitchType], colour: this.state.stitchColor };
+    this.setState({ pattern: newPattern });
     fetch(`http://localhost:5000/api/patterns/${this.props.match.params.pattern_id}/stitchHere`, { method: 'PUT', mode: 'cors' });
   }
 
   handleStitchSelect = (event) => {
-    this.setState({stitchType: event.target.value})
+    this.setState({ stitchType: event.target.value })
+  }
+
+  handleColorSelect = (color) => {
+    this.setState({ stitchColor: color.hex });
   }
 }
 

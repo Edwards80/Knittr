@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { CirclePicker } from 'react-color';
 
 class ToolBar extends Component {
   render() {
@@ -17,6 +18,7 @@ class ToolBar extends Component {
               </span>
             </p>
           </div>
+          <CirclePicker circleSize={28} onChange={this.props.handleColorSelect} />
         </div>
       </div>
     );
