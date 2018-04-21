@@ -33,8 +33,9 @@ class Patterns extends Component {
           return <Row row={row} index={i} key={i} updateStitch={this.updateStitch} stitchType={this.state.stitchType} />;
         })}
         <ToolBar handleStitchSelect={this.handleStitchSelect} handleColorSelect={this.handleColorSelect} stitchColor={this.state.stitchColor} />
+        <p className="title">Instructions</p>        
         {this.state.patternLoading ? <p>Loading</p>: this.state.pattern.map((row, i) => {
-          return <Instructions row={row} key={i} />
+          return <Instructions row={row} key={i} rowNum={i + 1} />;
         })}
       </div>
     );

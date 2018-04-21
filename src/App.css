@@ -36,3 +36,11 @@
   height: 30px;
   width: 30px;
 }
+
+.title {
+  text-align: center;
+}
+
+.instructions {
+  text-align: center;
+}
