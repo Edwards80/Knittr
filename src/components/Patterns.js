@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import Row from './Row';
 import ToolBar from './ToolBar';
 
+const stitchTypes = {
+  'knit' : 'k',
+  'perl' : 'p'
+}
+
 class Patterns extends Component {
   state = {
     patternLoading: true,
@@ -23,7 +28,7 @@ class Patterns extends Component {
     return (
       <div>
         {this.state.patternLoading ? <p>Loading</p> : this.state.pattern.map((row, i) => {
-          return <Row row={row} index={i} key={i} updateStitch={this.updateStitch} />;
+          return <Row row={row} index={i} key={i} updateStitch={this.updateStitch} stitchType={this.state.stitchType} />;
         })}
         <ToolBar handleStitchSelect={this.handleStitchSelect}/>
       </div>
@@ -32,7 +37,7 @@ class Patterns extends Component {
 
   updateStitch = (row, col) => {
     const newPattern = Object.assign([], this.state.pattern);
-    newPattern[row][col] = { stitchType: 'k', colour: '#ffff00' };
+    newPattern[row][col] = { stitchType: stitchTypes[this.state.stitchType], colour: '#ffff00' };
     this.setState({pattern: newPattern});
     fetch(`http://localhost:5000/api/patterns/${this.props.match.params.pattern_id}/stitchHere`, { method: 'PUT', mode: 'cors' });
   }
