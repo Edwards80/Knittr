@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 
 class PatternCard extends Component {
   render() {
-    let { title, style, author, description, _id} = this.props.pattern;
+    let { title, style, author, description, created_at, preview,  _id} = this.props.pattern;
     return (
       <div className='column'>
         <div className="card">
           <div className="card-image">
             <a href="Expand preview">
               <figure className="image is-4by3">
-                <img src="http://placeimg.com/480/480/any" alt="Pattern Preview" />
+                <img src={preview} alt="Pattern Preview" />
               </figure>
             </a>
           </div>
@@ -21,7 +21,8 @@ class PatternCard extends Component {
           </div>
           <div className="content">
             <p>{description}</p>
-            <p>Pattern by: <a href={`/designer/${author}`}>{author}</a></p>            
+            <p>Pattern by: <a href={`/designer/${author}`}>{author}</a></p>   
+            <p>Created: {new Date(created_at).toDateString()}</p> 
           </div>
         </div>
       </div>

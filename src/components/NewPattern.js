@@ -16,7 +16,7 @@ class NewPattern extends Component {
         <div className="modal-card">
           <header className="modal-card-head">
             <p className="modal-card-title">Create new pattern</p>
-            <button className="delete" aria-label="close" onClick={this.props.cancelNewPattern}></button>
+            <button className="delete" aria-label="close" onClick={this.props.closeNewPattern}></button>
           </header>
           <section className="modal-card-body">
             <div className="field">
@@ -69,7 +69,7 @@ class NewPattern extends Component {
           </section>
           <footer className="modal-card-foot">
             <button className="button is-success" onClick={this.handlePatternSubmit}>Create New Pattern</button>
-            <button className="button" onClick={this.props.cancelNewPattern}>Cancel</button>
+            <button className="button" onClick={this.props.closeNewPattern}>Cancel</button>
           </footer>
         </div>
       </div>
@@ -122,9 +122,9 @@ class NewPattern extends Component {
     })
       .then(res => {
         if (res.status === 404) return Promise.reject(new Error('Failed to post comment'));
-        console.log(res.status);
+        return(res.status)
       })
-      .then(this.props.cancelNewPattern);
+      .then(this.props.closeNewPattern);
   }
 
   createPattern = (rows, columns) => {

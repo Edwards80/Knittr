@@ -18,14 +18,14 @@ class Nav extends Component {
           <div className='navbar-menu is-active'>
             <div className='navbar-start'>
               <a className='navbar-item' onClick={() => { this.setState({ newPatternOpen: true }) }}>New Pattern</a>
-              <NewPattern newPatternOpen={this.state.newPatternOpen} cancelNewPattern={this.cancelNewPattern}></NewPattern>
+              <NewPattern newPatternOpen={this.state.newPatternOpen} closeNewPattern={this.closeNewPattern}></NewPattern>
             </div>
           </div>
         </div>
       </nav>
     );
   }
-  cancelNewPattern = () => {
+  closeNewPattern = () => {
     this.setState({ newPatternOpen: false });
   }
 }
