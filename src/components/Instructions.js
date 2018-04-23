@@ -4,7 +4,7 @@ class Instructions extends Component {
   render() {
     return (
       <div className="instructions">
-       {`Row ${this.props.rowNum}: ${parseRow(this.props.row)}`}
+        {`Row ${this.props.rowNum}: ${parseRow(this.props.row)}`}
       </div>
     );
   }
