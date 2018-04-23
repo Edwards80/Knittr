@@ -11,7 +11,9 @@ class Home extends Component {
       if (res.status === 404) return Promise.reject(new Error('Patterns not found'));
       return res.json();
     }).then(body => {
-      this.setState({ patternsLoading: false, patterns: body });
+      this.setState({ patternsLoading: false, patterns: body.sort((a, b) => {
+        return b.created_at - a.created_at;
+      }) });
     });
   }
   
@@ -29,7 +31,7 @@ class Home extends Component {
           </div>
         </section>
         <div className='columns' >
-          {this.state.patternsLoading ? <p>Loading</p>  : this.state.patterns.map((pattern, i) => {
+          {this.state.patternsLoading ? <p>Loading</p>  : this.state.patterns.slice(0, 4).map((pattern, i) => {
             return <PatternCard key={i} pattern={pattern} />;
           })}
         </div>
@@ -41,26 +43,12 @@ class Home extends Component {
             </div>
           </div>
         </section>
-        {/* <div className='columns' >
-          {[1, 2, 3, 4].map((i) => {
-            return <PatternCard key={i} />;
+        <div className='columns' >
+          {this.state.patternsLoading ? <p>Loading</p>  : this.state.patterns.slice(0, 4).map((pattern, i) => {
+            return pattern.difficulty.toLowerCase() === 'easy' ? <PatternCard key={i} pattern={pattern} /> : null;
           })}
-        </div> */}
-        <button className='button'>More</button>
-        {/* Beginner patterns section */}
-        <section className='hero is-primary'>
-          <div className='hero-body'>
-            <div className='container'>
-              <h1 className='title'>Intermediate Patterns</h1>
-            </div>
-          </div>
-        </section>
-        {/* <div className='columns' >
-          {[1, 2, 3, 4].map((i) => {
-            return <PatternCard key={i} />;
-          })}
-        </div> */}
-        <button className='button'>More</button>        
+        </div>
+        <button className='button'>More</button>     
       </div>
     );
   }
