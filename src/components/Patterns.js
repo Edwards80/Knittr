@@ -32,7 +32,7 @@ class Patterns extends Component {
         {this.state.patternLoading ? <p>Loading</p> : this.state.pattern.map((row, i) => {
           return <Row row={row} index={i} key={i} updateStitch={this.updateStitch} stitchType={this.state.stitchType} />;
         })}
-        <ToolBar handleStitchSelect={this.handleStitchSelect} handleColorSelect={this.handleColorSelect} stitchColor={this.state.stitchColor} />
+        <ToolBar handleStitchSelect={this.handleStitchSelect} handleColorSelect={this.handleColorSelect} stitchColor={this.state.stitchColor} handleSavePattern={this.handleSavePattern}/>
         <p className="title">Instructions</p>
         {this.state.patternLoading ? <p>Loading</p> : this.state.pattern.map((row, i) => {
           return <Instructions row={row} key={i} rowNum={i + 1} />;
@@ -47,7 +47,6 @@ class Patterns extends Component {
     newPattern[row][col] = { stitchType: stitchTypes[this.state.stitchType], colour: this.state.stitchColor };
     
     this.setState({ pattern: newPattern });
-    fetch(`http://localhost:5000/api/patterns/${this.props.match.params.pattern_id}/stitchHere`, { method: 'PUT', mode: 'cors' });
   }
 
   handleStitchSelect = (event) => {
@@ -56,6 +55,22 @@ class Patterns extends Component {
 
   handleColorSelect = (color) => {
     this.setState({ stitchColor: color.hex });
+  }
+
+  handleSavePattern = () => {
+    const patternId = this.props.match.params.pattern_id;
+    fetch(`http://localhost:5000/api/patterns/${patternId}`, {
+      method: 'PUT',
+      mode: 'cors',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      body: JSON.stringify({
+        pattern: this.state.pattern
+      })
+    }).then((something) => {
+      console.log(something)
+    })
   }
 }
 

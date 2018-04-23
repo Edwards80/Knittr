@@ -7,6 +7,7 @@ class ToolBar extends Component {
       <div>
         <div className='box'>
           <div className="subtitle">ToolBar</div>
+          <div className="button" onClick={this.props.handleSavePattern}>Save Changes</div>
           <div className="field">
             <p className="control">
               <span className="select" name="stitchType" onChange={this.props.handleStitchSelect}>
@@ -18,7 +19,7 @@ class ToolBar extends Component {
               </span>
             </p>
           </div>
-          <CirclePicker circleSize={28} color={this.props.stitchColor} onChange={this.props.handleColorSelect} width={'100%'}/>
+          <CirclePicker circleSize={28} color={this.props.stitchColor} onChange={this.props.handleColorSelect} width={'100%'} />
         </div>
       </div>
     );
