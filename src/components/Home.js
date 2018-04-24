@@ -48,7 +48,6 @@ class Home extends Component {
             return pattern.difficulty.toLowerCase() === 'easy' ? <PatternCard key={i} pattern={pattern} /> : null;
           })}
         </div>
-        <button className='button'>More</button>     
       </div>
     );
   }
