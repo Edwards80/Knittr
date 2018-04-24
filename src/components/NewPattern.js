@@ -8,7 +8,12 @@ class NewPattern extends Component {
     rows: 0,
     columns: 0,
     difficulty: '',
-    author: ''
+    author: '',
+    titleInvalid: true,
+    styleInvalid: true,
+    difficultyInvalid: true,
+    authorInvalid: true,
+    formInvalid: true
   }
 
   render() {
@@ -26,12 +31,14 @@ class NewPattern extends Component {
               <div className="control">
                 <input className="input" name="patternTitle" value={this.state.patternTitle} type="text" placeholder="Name your pattern" onChange={this.handleNameInput} />
               </div>
+              <div style={{ color: 'red' }}>{this.state.titleInvalid ? 'Title is not valid' : null}</div>
             </div>
             <div className="field">
               <label className="label">Pattern Style</label>
               <div className="control">
                 <input className="input" name="patternStyle" value={this.state.style} onChange={this.handleStyleInput} type="text" placeholder="Knitting Style" />
               </div>
+              <div style={{ color: 'red' }}>{this.state.styleInvalid ? 'Style is not valid' : null}</div>
             </div>
             <div className="field">
               <label className="label">Description</label>
@@ -44,12 +51,14 @@ class NewPattern extends Component {
               <div className="control">
                 <input className="input" name="difficulty" value={this.state.difficulty} onChange={this.handleDifficultyInput} type="text" placeholder="difficulty" />
               </div>
+              <div style={{ color: 'red' }}>{this.state.difficultyInvalid ? 'Difficulty is not valid' : null}</div>
             </div>
             <div className="field">
               <label className="label">Author</label>
               <div className="control">
                 <input className="input" name="author" value={this.state.author} onChange={this.handleAuthorInput} type="text" placeholder="author" />
               </div>
+              <div style={{ color: 'red' }}>{this.state.authorInvalid ? 'Author is not valid' : null}</div>
             </div>
             <div className="field is-horizontal">
               <div className="field-label">
@@ -70,7 +79,7 @@ class NewPattern extends Component {
             </div>
           </section>
           <footer className="modal-card-foot">
-            <button className="button is-success" onClick={this.handlePatternSubmit}>Create New Pattern</button>
+            <button className="button is-success" disabled={this.state.formInvalid} onClick={this.handlePatternSubmit}>Create New Pattern</button>
             <button className="button" onClick={this.props.closeNewPattern}>Cancel</button>
           </footer>
         </div>
@@ -80,10 +89,24 @@ class NewPattern extends Component {
 
   handleNameInput = (event) => {
     this.setState({ patternTitle: event.target.value });
+    this.checkFormValidity();
+
+    if (event.target.value.length < 5) {
+      this.setState({ titleInvalid: true });
+    } else {
+      this.setState({ titleInvalid: false });
+    }
   }
 
   handleStyleInput = (event) => {
     this.setState({ style: event.target.value });
+    this.checkFormValidity();
+
+    if (event.target.value.length < 5) {
+      this.setState({ styleInvalid: true });
+    } else {
+      this.setState({ styleInvalid: false });
+    }
   }
 
   handleDescriptionInput = (event) => {
@@ -100,10 +123,24 @@ class NewPattern extends Component {
 
   handleDifficultyInput = (event) => {
     this.setState({ difficulty: event.target.value });
+    this.checkFormValidity();
+
+    if (event.target.value.length < 5) {
+      this.setState({ difficultyInvalid: true });
+    } else {
+      this.setState({ difficultyInvalid: false });
+    }
   }
 
   handleAuthorInput = (event) => {
     this.setState({ author: event.target.value });
+    this.checkFormValidity();
+
+    if (event.target.value.length < 5) {
+      this.setState({ authorInvalid: true });
+    } else {
+      this.setState({ authorInvalid: false });
+    }
   }
 
   handlePatternSubmit = () => {
@@ -124,13 +161,21 @@ class NewPattern extends Component {
     })
       .then(res => {
         if (res.status === 404) return Promise.reject(new Error('Failed to post comment'));
-        return(res.status)
+        return (res.status)
       })
       .then(this.props.closeNewPattern);
   }
 
+  checkFormValidity = () => {
+    if (this.state.titleInvalid || this.state.styleInvalid || this.state.difficultyInvalid || this.state.authorInvalid) {
+      return this.setState({ formInvalid: true });
+    } else {
+      return this.setState({ formInvalid: false });
+    }
+  }
+
   createPattern = (rows, columns) => {
-    let pattern = []
+    let pattern = [];
     let rowBase = Array(rows).fill({ stitchType: 'p', colour: 'ff0000' });
 
     for (let i = 0; i < columns; i++) {

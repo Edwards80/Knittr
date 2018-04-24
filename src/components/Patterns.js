@@ -13,7 +13,7 @@ class Patterns extends Component {
     patternLoading: true,
     stitchType: 'knit',
     stitchColor: '#ff44336',
-    'saved': false
+    saved: true
     
   }
 
