@@ -19,7 +19,7 @@ class ToolBar extends Component {
               </span>
             </p>
           </div>
-          <CirclePicker circleSize={28} color={this.props.stitchColor} onChange={this.props.handleColorSelect} width={'100%'} />
+          <CirclePicker circleSize={28} color={this.props.stitchColor} onChange={this.props.handleColorSelect}  width={'100%'} />
         </div>
       </div>
     );

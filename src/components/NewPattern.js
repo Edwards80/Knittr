@@ -6,7 +6,9 @@ class NewPattern extends Component {
     style: '',
     description: '',
     rows: 0,
-    columns: 0
+    columns: 0,
+    difficulty: '',
+    author: ''
   }
 
   render() {
