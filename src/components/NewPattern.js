@@ -125,7 +125,7 @@ class NewPattern extends Component {
     this.setState({ difficulty: event.target.value });
     this.checkFormValidity();
 
-    if (event.target.value.length < 5) {
+    if (event.target.value.length < 3) {
       this.setState({ difficultyInvalid: true });
     } else {
       this.setState({ difficultyInvalid: false });
@@ -161,7 +161,13 @@ class NewPattern extends Component {
     })
       .then(res => {
         if (res.status === 404) return Promise.reject(new Error('Failed to post comment'));
-        return (res.status)
+        return this.props.getPatterns();
+      })
+      .then((res) => {
+        return res.json()
+      })
+      .then(body => {
+        this.props.setPatterns(body);
       })
       .then(this.props.closeNewPattern);
   }

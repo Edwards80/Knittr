@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from '../assets/woolball.png';
-import NewPattern from './NewPattern'
+import NewPattern from './NewPattern';
 
 class Nav extends Component {
   state = {
@@ -18,7 +18,7 @@ class Nav extends Component {
           <div className='navbar-menu is-active'>
             <div className='navbar-start'>
               <a className='navbar-item' onClick={() => { this.setState({ newPatternOpen: true }) }}>New Pattern</a>
-              <NewPattern newPatternOpen={this.state.newPatternOpen} closeNewPattern={this.closeNewPattern}></NewPattern>
+              <NewPattern newPatternOpen={this.state.newPatternOpen} closeNewPattern={this.closeNewPattern} getPatterns={this.props.getPatterns} setPatterns={this.props.setPatterns}></NewPattern>
             </div>
           </div>
         </div>

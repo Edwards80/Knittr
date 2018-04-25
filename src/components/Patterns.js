@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import Row from './Row';
 import ToolBar from './ToolBar';
-import Instructions from './Instructions'
+import Instructions from './Instructions';
 
 const stitchTypes = {
   'knit': 'k',
@@ -13,8 +14,8 @@ class Patterns extends Component {
     patternLoading: true,
     stitchType: 'knit',
     stitchColor: '#ff44336',
-    saved: true
-    
+    saved: true,
+    redirectToHome: false
   }
 
   componentDidMount() {
@@ -29,20 +30,22 @@ class Patterns extends Component {
   }
 
   render() {
-    return (
-      <div>
-        {this.state.patternLoading ? <p>Loading</p> : this.state.pattern.map((row, i) => {
-          return <Row row={row} index={i} key={i} updateStitch={this.updateStitch} stitchType={this.state.stitchType} />;
-        })}
-        {this.state.saved ? <div className="tag is-success">Pattern Saved</div> : <div className="tag is-danger">Unsaved changes</div>}        
-        <ToolBar handleStitchSelect={this.handleStitchSelect} handleColorSelect={this.handleColorSelect} stitchColor={this.state.stitchColor} handleSavePattern={this.handleSavePattern} />
-        <p className="title">Instructions</p>
-        {this.state.patternLoading ? <p>Loading</p> : this.state.pattern.map((row, i) => {
-          return <Instructions row={row} key={i} rowNum={i + 1} />;
-        })}
-        <div className="button is-danger" onClick={this.handleDeletePattern}>Delete Pattern</div>
-      </div>
-    );
+    if (this.state.redirectToHome) return <Redirect to='/' />
+    else
+      return (
+        <div>
+          {this.state.patternLoading ? <p>Loading</p> : this.state.pattern.map((row, i) => {
+            return <Row row={row} index={i} key={i} updateStitch={this.updateStitch} stitchType={this.state.stitchType} />;
+          })}
+          {this.state.saved ? <div className="tag is-success">Pattern Saved</div> : <div className="tag is-danger">Unsaved changes</div>}
+          <ToolBar handleStitchSelect={this.handleStitchSelect} handleColorSelect={this.handleColorSelect} stitchColor={this.state.stitchColor} handleSavePattern={this.handleSavePattern} />
+          <p className="title">Instructions</p>
+          {this.state.patternLoading ? <p>Loading</p> : this.state.pattern.map((row, i) => {
+            return <Instructions row={row} key={i} rowNum={i + 1} />;
+          })}
+          <div className="button is-danger" onClick={this.handleDeletePattern}>Delete Pattern</div>
+        </div>
+      );
   }
 
   updateStitch = (row, col) => {
@@ -73,18 +76,23 @@ class Patterns extends Component {
         pattern: this.state.pattern
       })
     });
-    this.setState({saved: true})
+    this.setState({ saved: true });
   }
 
   handleDeletePattern = () => {
     const patternId = this.props.match.params.pattern_id;
     fetch(`http://localhost:5000/api/patterns/${patternId}`, {
       method: 'DELETE',
-      mode: 'cors',
-    }).then((response) => {
-      console.log(response);
-    });
+      mode: 'cors'
+    })
+      .then(() => {
+        this.setState({ redirectToHome: true });
+      })
+      .catch((err) => {
+        console.log(err)
+      });
   }
+
 }
 
 

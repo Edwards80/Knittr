@@ -7,7 +7,7 @@ class PatternCard extends Component {
       <div className='column'>
         <div className="card">
           <div className="card-image">
-            <a href="Expand preview">
+            <a href={`/patterns/${_id}`}>
               <figure className="image is-4by3">
                 <img src={preview} alt="Pattern Preview" />
               </figure>

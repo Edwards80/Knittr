@@ -11,9 +11,7 @@ class Home extends Component {
       if (res.status === 404) return Promise.reject(new Error('Patterns not found'));
       return res.json();
     }).then(body => {
-      this.setState({ patternsLoading: false, patterns: body.sort((a, b) => {
-        return b.created_at - a.created_at;
-      }) });
+      this.props.setPatterns(body)
     });
   }
   
@@ -31,7 +29,7 @@ class Home extends Component {
           </div>
         </section>
         <div className='columns' >
-          {this.state.patternsLoading ? <p>Loading</p>  : this.state.patterns.slice(0, 4).map((pattern, i) => {
+          {this.props.patternsLoading ? <p>Loading</p>  : this.props.patterns.slice(0, 4).map((pattern, i) => {
             return <PatternCard key={i} pattern={pattern} />;
           })}
         </div>
@@ -44,13 +42,14 @@ class Home extends Component {
           </div>
         </section>
         <div className='columns' >
-          {this.state.patternsLoading ? <p>Loading</p>  : this.state.patterns.slice(0, 4).map((pattern, i) => {
+          {this.props.patternsLoading ? <p>Loading</p>  : this.props.patterns.slice(0, 4).map((pattern, i) => {
             return pattern.difficulty.toLowerCase() === 'easy' ? <PatternCard key={i} pattern={pattern} /> : null;
           })}
         </div>
       </div>
     );
   }
+
 }
 
 export default Home;
