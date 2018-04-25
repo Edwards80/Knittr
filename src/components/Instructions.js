@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 const colours = {
+  'f44336' : 'red',
   '#f44336' : 'red',
   '#e91e63' : 'pink',
   '#9c27b0' : 'fucia',
@@ -25,24 +26,39 @@ class Instructions extends Component {
   render() {
     return (
       <div className="instructions">
-        {`Row ${this.props.rowNum}: ${parseRow(this.props.row)}`}
+        {`Row ${this.props.rowNum}: ${parseRow(this.props.row, this.props.rowNum)}`}
       </div>
     );
   }
 
 }
 
-const parseRow = (row, index) => {
-  if (index % 2 === 0) row.reverse();
+const parseRow = (row, rowNum) => {
+  let rowCopy = row.slice();
+  let reverseRow = false;
   let prevStitch = '';
   let prevColour = '';
   let count = 1;
 
-  return row.reduce((inst, stitch, i) => {
+  const reverseStitch = {
+    p : 'k',
+    k : 'p'
+  };
+
+  if (rowNum % 2 === 0) {
+    rowCopy = rowCopy.slice().reverse();
+    reverseRow = true;
+  }
+
+  return rowCopy.reduce((inst, stitch, i) => {
+    if (reverseRow) {
+      stitch.stitchType = reverseStitch[stitch.stitchType]
+    }
+
     if (i === 0) {
       prevStitch = stitch.stitchType;
       prevColour = stitch.colour;
-    } else if (i === row.length - 1) {
+    } else if (i === rowCopy.length - 1) {
       if (stitch.stitchType === prevStitch && stitch.colour === prevColour) {
         inst += `${stitch.stitchType}${count + 1} in ${colours[prevColour]}`;
       } else {
@@ -56,6 +72,7 @@ const parseRow = (row, index) => {
       prevColour = stitch.colour;
       count = 1;
     }
+
     return inst;
   }, '');
 };
