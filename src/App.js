@@ -30,7 +30,6 @@ class App extends Component {
   }
 
   setPatterns = body => {
-    console.log(body)
     this.setState({ patternsLoading: false, patterns: body.sort((a, b) => {
       return b.created_at - a.created_at;
     }) });

@@ -32,7 +32,8 @@ class Instructions extends Component {
 
 }
 
-const parseRow = (row) => {
+const parseRow = (row, index) => {
+  if (index % 2 === 0) row.reverse();
   let prevStitch = '';
   let prevColour = '';
   let count = 1;
