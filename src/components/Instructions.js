@@ -51,24 +51,26 @@ const parseRow = (row, rowNum) => {
   }
 
   return rowCopy.reduce((inst, stitch, i) => {
+    let stitchType = stitch.stitchType;
+
     if (reverseRow) {
-      stitch.stitchType = reverseStitch[stitch.stitchType]
+      stitchType = reverseStitch[stitch.stitchType]
     }
 
     if (i === 0) {
-      prevStitch = stitch.stitchType;
+      prevStitch = stitchType;
       prevColour = stitch.colour;
     } else if (i === rowCopy.length - 1) {
-      if (stitch.stitchType === prevStitch && stitch.colour === prevColour) {
-        inst += `${stitch.stitchType}${count + 1} in ${colours[prevColour]}`;
+      if (stitchType === prevStitch && stitch.colour === prevColour) {
+        inst += `${stitchType}${count + 1} in ${colours[prevColour]}`;
       } else {
-        inst += `${prevStitch}${count} in ${colours[prevColour]}, ${stitch.stitchType}${1} in ${colours[stitch.colour]}`;
+        inst += `${prevStitch}${count} in ${colours[prevColour]}, ${stitchType}${1} in ${colours[stitch.colour]}`;
       }
-    } else if (stitch.stitchType === prevStitch && stitch.colour === prevColour) {
+    } else if (stitchType === prevStitch && stitch.colour === prevColour) {
       count++;
     } else {
       inst += `${prevStitch}${count} in ${colours[prevColour]}, `;
-      prevStitch = stitch.stitchType;
+      prevStitch = stitchType;
       prevColour = stitch.colour;
       count = 1;
     }
