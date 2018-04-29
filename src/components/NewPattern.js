@@ -144,7 +144,7 @@ class NewPattern extends Component {
   }
 
   handlePatternSubmit = () => {
-    fetch('http://localhost:5000/api/patterns', {
+    fetch('https://knittr-be.herokuapp.com/api/patterns', {
       method: 'POST',
       mode: 'cors',
       headers: new Headers({

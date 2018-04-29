@@ -8,6 +8,7 @@ class ToolBar extends Component {
         <div className='box'>
           <div className="subtitle">ToolBar</div>
           <div className="button" onClick={this.props.handleSavePattern}>Save Changes</div>
+          {this.props.saved ? <div className="tag is-success is-medium">Pattern Saved</div> : <div className="tag is-danger is-medium">Unsaved changes</div>}          
           <div className="field">
             <p className="control">
               <span className="select" name="stitchType" onChange={this.props.handleStitchSelect}>

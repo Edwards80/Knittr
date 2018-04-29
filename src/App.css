@@ -17,6 +17,10 @@
   border-radius: 1%
 }
 
+.tag {
+  margin-left: 5px 
+}
+
 .wrapper {
   margin-left: 5px;
   display: grid; 
@@ -34,7 +38,8 @@
   font-size: 100%;
   cursor: crosshair;
   height: 30px;
-  width: 30px;
+  width: 30px;  
+  text-align: center;
 }
 
 .title {

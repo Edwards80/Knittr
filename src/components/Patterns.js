@@ -21,7 +21,7 @@ class Patterns extends Component {
   componentDidMount() {
     const patternId = this.props.match.params.pattern_id;
 
-    fetch(`http://localhost:5000/api/patterns/${patternId}`).then(res => {
+    fetch(`https://knittr-be.herokuapp.com/api/patterns/${patternId}`).then(res => {
       if (res.status === 404) return Promise.reject(new Error('Pattern not found'));
       return res.json();
     }).then(body => {
@@ -37,11 +37,10 @@ class Patterns extends Component {
           {this.state.patternLoading ? <p>Loading</p> : this.state.pattern.map((row, i) => {
             return <Row row={row} index={i} key={i} updateStitch={this.updateStitch} stitchType={this.state.stitchType} />;
           })}
-          {this.state.saved ? <div className="tag is-success">Pattern Saved</div> : <div className="tag is-danger">Unsaved changes</div>}
-          <ToolBar handleStitchSelect={this.handleStitchSelect} handleColorSelect={this.handleColorSelect} stitchColor={this.state.stitchColor} handleSavePattern={this.handleSavePattern} />
+          <ToolBar handleStitchSelect={this.handleStitchSelect} handleColorSelect={this.handleColorSelect} stitchColor={this.state.stitchColor} handleSavePattern={this.handleSavePattern} saved={this.state.saved}/>
           <p className="title">Instructions</p>
           {this.state.patternLoading ? <p>Loading</p> : this.state.pattern.map((row, i) => {
-            return <Instructions row={row} key={i} rowNum={i + 1} />;
+            return <Instructions row={row} key={i} rowNum={i + 1} />
           })}
           <div className="button is-danger" onClick={this.handleDeletePattern}>Delete Pattern</div>
         </div>
@@ -66,7 +65,7 @@ class Patterns extends Component {
 
   handleSavePattern = () => {
     const patternId = this.props.match.params.pattern_id;
-    fetch(`http://localhost:5000/api/patterns/${patternId}`, {
+    fetch(`https://knittr-be.herokuapp.com/api/patterns/${patternId}`, {
       method: 'PUT',
       mode: 'cors',
       headers: new Headers({
@@ -81,7 +80,7 @@ class Patterns extends Component {
 
   handleDeletePattern = () => {
     const patternId = this.props.match.params.pattern_id;
-    fetch(`http://localhost:5000/api/patterns/${patternId}`, {
+    fetch(`https://knittr-be.herokuapp.com/api/patterns/${patternId}`, {
       method: 'DELETE',
       mode: 'cors'
     })

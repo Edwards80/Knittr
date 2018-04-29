@@ -36,7 +36,7 @@ class App extends Component {
   }
 
   getPatterns = () => {
-    return fetch('http://localhost:5000/api/patterns/');
+    return fetch('https://knittr-be.herokuapp.com/api.patterns');
   }
 }
 
