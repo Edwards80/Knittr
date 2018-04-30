@@ -188,9 +188,9 @@ class NewPattern extends Component {
 
   createPattern = (rows, columns) => {
     let pattern = [];
-    let rowBase = Array(rows).fill({ stitchType: 'k', colour: '#f44336' });
+    let rowBase = Array(columns).fill({ stitchType: 'k', colour: '#f44336' });
 
-    for (let i = 0; i < columns; i++) {
+    for (let i = 0; i < rows; i++) {
       pattern.push(rowBase);
     }
     return pattern;
