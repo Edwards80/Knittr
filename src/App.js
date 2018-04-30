@@ -24,7 +24,9 @@ class App extends Component {
             }} />
             <Route path='/patterns/:pattern_id' component={Patterns} />
             <Route path='/NewPattern' component={NewPattern} />
-            <Route path='/PatternSearch' component={PatternSearch} />            
+            <Route exact path='/PatternSearch' render={() => {
+              return <PatternSearch component={PatternSearch} patternsLoading={this.state.patternsLoading} setPatterns={this.setPatterns} getPatterns={this.getPatterns} patterns={this.state.patterns}/>
+            }}/>            
           </Switch>
         </div>
       </Router>      
