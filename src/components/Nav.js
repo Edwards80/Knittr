@@ -17,6 +17,9 @@ class Nav extends Component {
           </a>
           <div className='navbar-menu is-active'>
             <div className='navbar-start'>
+              <a className='navbar-item' href='/PatternSearch'>
+                <p>Patterns</p>
+              </a>
               <a className='navbar-item' onClick={() => { this.setState({ newPatternOpen: true }) }}>New Pattern</a>
               <NewPattern newPatternOpen={this.state.newPatternOpen} closeNewPattern={this.closeNewPattern} getPatterns={this.props.getPatterns} setPatterns={this.props.setPatterns}></NewPattern>
             </div>

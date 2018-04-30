@@ -5,6 +5,7 @@ import Nav from './components/Nav';
 import Home from './components/Home';
 import Patterns from './components/Patterns';
 import NewPattern from './components/NewPattern';
+import PatternSearch from './components/PatternSearch'
 
 class App extends Component {
   state = {
@@ -23,6 +24,7 @@ class App extends Component {
             }} />
             <Route path='/patterns/:pattern_id' component={Patterns} />
             <Route path='/NewPattern' component={NewPattern} />
+            <Route path='/PatternSearch' component={PatternSearch} />            
           </Switch>
         </div>
       </Router>      
