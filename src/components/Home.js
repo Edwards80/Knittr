@@ -14,7 +14,7 @@ class Home extends Component {
       this.props.setPatterns(body)
     });
   }
-  
+
   render() {
     return (
       <div>
@@ -29,7 +29,7 @@ class Home extends Component {
           </div>
         </section>
         <div className='columns' >
-          {this.props.patternsLoading ? <p>Loading</p>  : this.props.patterns.slice(0, 4).map((pattern, i) => {
+          {this.props.patternsLoading ? <p>Loading</p> : this.props.patterns.slice(0, 4).map((pattern, i) => {
             return <PatternCard key={i} pattern={pattern} />;
           })}
         </div>
@@ -42,9 +42,13 @@ class Home extends Component {
           </div>
         </section>
         <div className='columns' >
-          {this.props.patternsLoading ? <p>Loading</p>  : this.props.patterns.slice(0, 4).map((pattern, i) => {
-            return pattern.difficulty.toLowerCase() === 'easy' ? <PatternCard key={i} pattern={pattern} /> : null;
-          })}
+          {this.props.patternsLoading ? <p>Loading</p> : this.props.patterns.slice()
+            .filter((pattern) => {
+              return pattern.difficulty.toLowerCase() === 'beginner';
+            })
+            .map((pattern, i) => {
+              return <PatternCard key={i} pattern={pattern} />;
+            })}
         </div>
       </div>
     );
