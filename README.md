@@ -1,11 +1,15 @@
 
 # Knittr
 
-An app for designing, editing, storing and viewing knitting patterns
+An app for designing, editing, storing and viewing knitting patterns. It uses a grid based pattern entry system which is then parsed into written instructions, which are in the same format as a traditional knitting pattern.
+
+The front end is built using react - the data is stored in a mongoDB and is provided by the Knittr back end app - ( https://github.com/Edwards80/Knittr-BE )
+
+
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
 
@@ -15,73 +19,27 @@ These instructions will get you a copy of the project up and running on your loc
     react-dom :         16.3.1
     react-router-dom :  4.2.2
     react-scripts :     1.1.4
+    react-colour :      2.14.1
     
 ### Installing
 
-A step by step series of examples that tell you have to get a development env running
+    Open your terminal
 
-Say what the step will be
+    Clone this repository ( https://github.com/Edwards80/Knittr )
 
-```
-Give the example
-```
+    Install dependencies ( npm i )
 
-And repeat
+    npm start
 
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Run "npm t" to run the test suite
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+    Node.JS
+    React
+    Bulma CSS framework
 
 ## Authors
 
 * **Scott Edwards** - *Initial work* - [Edwards80](https://github.com/Edwards80)
 
 Other contributors: (https://github.com/Edwards80/Knittr/contributors)
-
-## License
-
-License details here
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
