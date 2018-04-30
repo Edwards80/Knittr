@@ -13,7 +13,9 @@ class NewPattern extends Component {
     styleInvalid: true,
     difficultyInvalid: true,
     authorInvalid: true,
-    formInvalid: true
+    formInvalid: true,
+    rowInvalid: true,
+    columnInvalid: true
   }
 
   render() {
@@ -47,7 +49,7 @@ class NewPattern extends Component {
               </div>
             </div>
             <div className="field">
-            <label className="label">Difficulty</label>              
+              <label className="label">Difficulty</label>
               <p className="control">
                 <span className="select" name="difficulty" onChange={this.handleDifficultySelect}>
                   <select>
@@ -75,9 +77,11 @@ class NewPattern extends Component {
                   <div className="control">
                     <label className="input">Height
                       <input type="number" name="height" onChange={this.handleRowInput} value={this.state.rows} />
+                      <div style={{ color: 'red' }}>{this.state.rowInvalid ? 'Max width 25' : null}</div>
                     </label>
                     <label className="input">Width
                       <input type="number" name="width" onChange={this.handleColumnsInput} value={this.state.columns} />
+                      <div style={{ color: 'red' }}>{this.state.columnInvalid ? 'Max height 25' : null}</div>
                     </label>
                   </div>
                 </div>
@@ -121,16 +125,30 @@ class NewPattern extends Component {
 
   handleRowInput = (event) => {
     this.setState({ rows: event.target.value });
+    this.checkFormValidity();
+
+    if (event.target.value > 25) {
+      this.setState({ rowInvalid: true });
+    } else {
+      this.setState({ rowInvalid: false });
+    }
   }
 
   handleColumnsInput = (event) => {
     this.setState({ columns: event.target.value });
+    this.checkFormValidity();
+
+    if (event.target.value > 25) {
+      this.setState({ columnInvalid: true });
+    } else {
+      this.setState({ columnInvalid: false });
+    }
   }
   beiginner
   handleDifficultySelect = (event) => {
     this.setState({ difficulty: event.target.value });
     this.checkFormValidity();
-    
+
     if (event.target.value === 'select') {
       this.setState({ difficultyInvalid: true });
     } else {
@@ -179,7 +197,7 @@ class NewPattern extends Component {
   }
 
   checkFormValidity = () => {
-    if (this.state.titleInvalid || this.state.styleInvalid || this.state.difficultyInvalid || this.state.authorInvalid) {
+    if (this.state.titleInvalid || this.state.styleInvalid || this.state.difficultyInvalid || this.state.authorInvalid || this.state.rowInvalid || this.state.columnInvalid) {
       return this.setState({ formInvalid: true });
     } else {
       return this.setState({ formInvalid: false });
