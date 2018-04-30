@@ -52,9 +52,9 @@ class NewPattern extends Component {
                 <span className="select" name="difficulty" onChange={this.handleDifficultySelect}>
                   <select>
                     <option defaultValue value="select">Select </option>
-                    <option value="Beginner">Beginner</option>
-                    <option value="Intermediate">Intermediate</option>
-                    <option value="Advanced">Advanced</option>
+                    <option value="beginner">Beginner</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="advanced">Advanced</option>
                   </select>
                 </span>
               </p>
@@ -126,7 +126,7 @@ class NewPattern extends Component {
   handleColumnsInput = (event) => {
     this.setState({ columns: event.target.value });
   }
-
+  beiginner
   handleDifficultySelect = (event) => {
     this.setState({ difficulty: event.target.value });
     this.checkFormValidity();
@@ -158,7 +158,7 @@ class NewPattern extends Component {
       }),
       body: JSON.stringify({
         title: this.state.patternTitle,
-        difficulty: 'easy',
+        difficulty: this.state.difficulty,
         style: this.state.style,
         author: this.state.author,
         description: this.state.description,

@@ -46,6 +46,7 @@ class Home extends Component {
             .filter((pattern) => {
               return pattern.difficulty.toLowerCase() === 'beginner';
             })
+            .slice(0, 4)
             .map((pattern, i) => {
               return <PatternCard key={i} pattern={pattern} />;
             })}
