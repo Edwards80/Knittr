@@ -47,11 +47,17 @@ class NewPattern extends Component {
               </div>
             </div>
             <div className="field">
-              <label className="label">Difficulty</label>
-              <div className="control">
-                <input className="input" name="difficulty" value={this.state.difficulty} onChange={this.handleDifficultyInput} type="text" placeholder="difficulty" />
-              </div>
-              <div style={{ color: 'red' }}>{this.state.difficultyInvalid ? 'Difficulty is not valid' : null}</div>
+            <label className="label">Difficulty</label>              
+              <p className="control">
+                <span className="select" name="difficulty" onChange={this.handleDifficultySelect}>
+                  <select>
+                    <option defaultValue value="select">Select </option>
+                    <option value="Beginner">Beginner</option>
+                    <option value="Intermediate">Intermediate</option>
+                    <option value="Advanced">Advanced</option>
+                  </select>
+                </span>
+              </p>
             </div>
             <div className="field">
               <label className="label">Author</label>
@@ -121,11 +127,11 @@ class NewPattern extends Component {
     this.setState({ columns: event.target.value });
   }
 
-  handleDifficultyInput = (event) => {
+  handleDifficultySelect = (event) => {
     this.setState({ difficulty: event.target.value });
     this.checkFormValidity();
-
-    if (event.target.value.length < 3) {
+    
+    if (event.target.value === 'select') {
       this.setState({ difficultyInvalid: true });
     } else {
       this.setState({ difficultyInvalid: false });
